@@ -1,9 +1,12 @@
 import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 
 
-public class MainApp {
+public class Part1 {
 
     public static void main(String[] args) throws IOException {
 /**
@@ -97,5 +100,48 @@ public class MainApp {
 //                return FileVisitResult.CONTINUE;
 //            }
 //        });
+/**
+ * Если нужно скопировать без использования copy (то есть копируем байты из файла out в in
+ * RandomAccessFile - открытие файла для чтения или записи
+ *
+ * Channel бывает:
+ * 1. FileChannel
+ * 2. Datagrow (UDP)
+ * 3. Socket (TCP)
+ * 4. ServerSocket
+ */
+//        RandomAccessFile srcFile = new RandomAccessFile("textNew/out.txt", "rw");
+//        // для этого нужно открыть канал для двух файлов
+//        FileChannel srcFileChannel = srcFile.getChannel();
+//
+//        RandomAccessFile dstFile = new RandomAccessFile("textNew/in.txt", "rw");
+//        FileChannel dstFileChannel = dstFile.getChannel();
+//
+//        long possition = 0; // с какого байта
+//        long count = srcFileChannel.size(); // и сколько все байт нужно перекинуть
+//
+//        dstFileChannel.transferFrom(srcFileChannel, possition, count);
+//        srcFileChannel.transferTo(possition, count, dstFileChannel);
+
+/**
+ * Как работать через буфер (продолжение в part2)
+ */
+        RandomAccessFile raf = new RandomAccessFile("textNew/data.txt", "rw");
+        FileChannel fileChannel = raf.getChannel(); //получаем канал
+
+        ByteBuffer byteBuffer = ByteBuffer.allocate(4); // создаем буфер через allocate и указываем максимальный размер
+
+        int bytesRead = fileChannel.read(byteBuffer); // из канала данные попадают в буфер
+        while (bytesRead != -1) {
+            byteBuffer.flip();  // flip отчевает за переключение режима у буфера из режима я прочитал и забрал данные
+            // в режим чтения данных и передачи например на печать (см цинкл ниже)
+            while (byteBuffer.hasRemaining()){
+                System.out.print((char)byteBuffer.get());
+            }
+            System.out.println(" - кусок файла");
+            byteBuffer.clear();
+            bytesRead=fileChannel.read(byteBuffer);
+        }
+
     }
 }
