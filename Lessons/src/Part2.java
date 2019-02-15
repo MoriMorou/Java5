@@ -6,11 +6,16 @@ public class Part2 {
 
     public static void main(String[] args) {
         ByteBuffer byteBuffer = ByteBuffer.allocate(4); // создаем буфер через allocate и указываем максимальный размер
+        byteBuffer.put((byte)1);
+        byteBuffer.put((byte)2);
+        byteBuffer.put((byte)3);
+        byteBuffer.flip();
+        System.out.println(byteBuffer.get());
 
     }
 
     public static void fileRead() throws Exception{
-    RandomAccessFile raf = new RandomAccessFile("textNew/data.txt", "rw");
+    RandomAccessFile raf = new RandomAccessFile("text/data.txt", "rw");
     FileChannel fileChannel = raf.getChannel(); //получаем канал
 
     ByteBuffer byteBuffer = ByteBuffer.allocate(4); // создаем буфер через allocate и указываем максимальный размер
