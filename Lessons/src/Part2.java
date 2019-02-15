@@ -11,6 +11,18 @@ public class Part2 {
         byteBuffer.put((byte)3);
         byteBuffer.flip();
         System.out.println(byteBuffer.get());
+        System.out.println(byteBuffer.get());
+        System.out.println(byteBuffer.get());
+        byteBuffer.flip();
+        byteBuffer.put((byte)4);
+        byteBuffer.put((byte)5);
+        byteBuffer.flip();
+        System.out.println(byteBuffer.get());
+        System.out.println(byteBuffer.get());
+        byteBuffer.rewind(); //скидывет курсор на первую ячейку
+        System.out.println(byteBuffer.get());
+        byteBuffer.clear();
+
 
     }
 
