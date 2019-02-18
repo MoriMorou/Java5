@@ -1,0 +1,2 @@
+public class hgg {
+}
