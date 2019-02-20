@@ -101,8 +101,10 @@
                            <contextMenu>
                               <ContextMenu>
                                 <items>
-                                  <MenuItem mnemonicParsing="false" text="Add" />
+                                  <MenuItem mnemonicParsing="false" text="Open" />
                                     <MenuItem mnemonicParsing="false" text="Rename" />
+                                    <MenuItem mnemonicParsing="false" text="Add" />
+                                    <MenuItem mnemonicParsing="false" text="Copy" />
                                     <MenuItem mnemonicParsing="false" text="Delete" />
                                 </items>
                               </ContextMenu>
@@ -133,6 +135,17 @@
                             <TableColumn prefWidth="110.0" text="Type" />
                               <TableColumn prefWidth="79.0" text="Size" />
                           </columns>
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                    <MenuItem mnemonicParsing="false" text="Open" />
+                                  <MenuItem mnemonicParsing="false" text="Save" />
+                                    <MenuItem mnemonicParsing="false" text="Rename" />
+                                    <MenuItem mnemonicParsing="false" text="Copy" />
+                                    <MenuItem mnemonicParsing="false" text="Delete" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu>
                         </TableView>
                      </children>
                   </VBox>

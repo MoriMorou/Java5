@@ -106,6 +106,7 @@
                                     <MenuItem mnemonicParsing="false" text="Add" />
                                     <MenuItem mnemonicParsing="false" text="Copy" />
                                     <MenuItem mnemonicParsing="false" text="Delete" />
+                                    <MenuItem mnemonicParsing="false" text="New Folder" />
                                 </items>
                               </ContextMenu>
                            </contextMenu>
@@ -121,7 +122,7 @@
                <children>
                   <VBox prefHeight="539.0" prefWidth="426.0">
                      <children>
-                        <Label text="Local Storage">
+                        <Label text="Cloud Storage">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -143,6 +144,7 @@
                                     <MenuItem mnemonicParsing="false" text="Rename" />
                                     <MenuItem mnemonicParsing="false" text="Copy" />
                                     <MenuItem mnemonicParsing="false" text="Delete" />
+                                    <MenuItem mnemonicParsing="false" text="New Folder" />
                                 </items>
                               </ContextMenu>
                            </contextMenu>
