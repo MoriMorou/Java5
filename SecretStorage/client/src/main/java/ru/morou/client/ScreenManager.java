@@ -8,9 +8,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
-
-
+/**
+ * Управление сценами.
+ */
 
 public class ScreenManager {
     private static Stage stage;
@@ -19,12 +19,14 @@ public class ScreenManager {
         stage = newStage;
     }
 
+    // FIXME: Каждая сцена описана отдельно, это правильно? 2019-02-20
+    // FIXME: Чем отличается Platform.runLater от Task, когда что следует использовать?
     public static void showLoginScreen(){
         Platform.runLater(()->{
             stage.close();
             try {
                 Parent root = FXMLLoader.load(ScreenManager.class.getResource("/Login.fxml"));
-                stage.setTitle("Sign in");
+                stage.setTitle("Secret Storage");
                 stage.setScene(new Scene(root, 800, 600));
                 stage.setResizable(false);
                 stage.show();
@@ -32,7 +34,6 @@ public class ScreenManager {
                 e.printStackTrace();
             }
         });
-
     }
 
     public static void showWorkFlowScreen(){

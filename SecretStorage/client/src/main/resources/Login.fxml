@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #2A363F;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #2A363F;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.morou.client.controllers.LoginController">
    <children>
       <Pane layoutX="110.0" layoutY="254.0" prefHeight="93.0" prefWidth="200.0">
          <children>
@@ -30,7 +30,7 @@
       <PasswordField fx:id="password" layoutX="410.0" layoutY="262.0" prefHeight="36.0" prefWidth="274.0" promptText="Password" />
       <Line endX="-100.0" endY="243.0" layoutX="438.0" layoutY="222.0" startX="-100.0" startY="-81.0" stroke="#457666" />
       <TextField fx:id="login" layoutX="410.0" layoutY="192.0" prefHeight="36.0" prefWidth="274.0" promptText="Login" />
-      <Button layoutX="410.0" layoutY="331.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="274.0" text="CONNECT" textFill="#457666" />
+      <Button layoutX="410.0" layoutY="331.0" mnemonicParsing="false" onAction="#btnSignInOnAction" prefHeight="36.0" prefWidth="274.0" text="CONNECT" textFill="#457666" />
       <Button layoutX="410.0" layoutY="391.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #2A363F;" text="Registration" textFill="#6dd89f">
          <cursor>
             <Cursor fx:constant="DEFAULT" />

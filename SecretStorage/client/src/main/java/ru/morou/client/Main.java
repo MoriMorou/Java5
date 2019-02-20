@@ -4,7 +4,8 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 /**
- * Global instance of the scopes required by this quickstart.
+ * Основной класс.
+ * Управление сценами идет через менеджер сцен.
  */
 
 public class Main extends Application {
