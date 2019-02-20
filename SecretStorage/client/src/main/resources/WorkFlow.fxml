@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Line?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.morou.client.controllers.WorkFlowController">
     <children>
@@ -16,7 +17,7 @@
          <children>
             <ImageView fitHeight="39.0" fitWidth="36.0" layoutX="18.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@icons/mail.png" />
+                  <Image url="@icons/whatsapp.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="46.0" fitWidth="42.0" layoutX="15.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
@@ -39,25 +40,68 @@
                   <Image url="@icons/telegram.png" />
                </image>
             </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/interface_icons/home.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
-        <Group layoutX="50.0" layoutY="23.0">
-            <children>
-              <Button layoutX="-33.0" layoutY="-4.0" minWidth="36.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="36.0" style="-fx-background-color: #2A363F;" />
-                <Line layoutX="1.2426414489746094" startX="-30.0" stroke="#457666" strokeDashOffset="10.0" strokeWidth="6.0" />
-                <Line layoutX="1.2426414489746094" layoutY="26.0" startX="-30.0" stroke="#457666" strokeDashOffset="10.0" strokeWidth="6.0" />
-                <Line layoutX="1.0" layoutY="13.0" startX="-30.0" stroke="#457666" strokeDashOffset="10.0" strokeWidth="6.0" />
-            </children>
-        </Group>
+        <Group layoutX="50.0" layoutY="23.0" />
       <Pane layoutX="72.0" prefHeight="60.0" prefWidth="729.0" style="-fx-background-color: #354550;">
          <children>
-            <TextField alignment="BOTTOM_LEFT" layoutX="492.0" layoutY="16.0" prefHeight="28.0" prefWidth="223.0" promptText="Search" style="-fx-border-color: #457666;" />
+            <TextField alignment="BOTTOM_LEFT" layoutX="437.0" layoutY="16.0" prefHeight="28.0" prefWidth="223.0" promptText="Search" style="-fx-border-color: #00d4ff;" />
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="14.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/interface_icons/add_insert_document.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="60.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/interface_icons/download_document_file.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="104.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/interface_icons/remove_delete_document.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="670.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/interface_icons/search.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <SplitPane dividerPositions="0.5" layoutX="72.0" layoutY="60.0" opacity="0.47" prefHeight="541.0" prefWidth="729.0">
         <items>
-          <AnchorPane fx:id="LocalStorage" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
-          <AnchorPane fx:id="CloudStorage" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+          <AnchorPane fx:id="LocalStorage" minHeight="0.0" minWidth="0.0" prefHeight="539.0" prefWidth="504.0">
+               <children>
+                  <VBox prefHeight="539.0" prefWidth="360.0">
+                     <children>
+                        <Label text="Local Storage">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets left="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children></AnchorPane>
+          <AnchorPane fx:id="CloudStorage" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <VBox prefHeight="541.0" prefWidth="360.0">
+                     <children>
+                        <Label text="Cloud Storage">
+                           <VBox.margin>
+                              <Insets left="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children></AnchorPane>
         </items>
       </SplitPane>
     </children>
