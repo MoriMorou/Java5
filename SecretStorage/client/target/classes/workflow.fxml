@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<<<<<<< HEAD
+
+<?import javafx.scene.layout.VBox?>
+
+=======
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+>>>>>>> mycloud
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.morou.client.controllers.WorkFlowController">
+    <children>
+      <Pane prefHeight="600.0" prefWidth="72.0" style="-fx-background-color: #2A363F;">
+         <children>
+            <ImageView fitHeight="39.0" fitWidth="36.0" layoutX="18.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/whatsapp.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="46.0" fitWidth="42.0" layoutX="15.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/dropbox.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="39.0" fitWidth="36.0" layoutX="18.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/fb%202.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="39.0" fitWidth="36.0" layoutX="18.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/vk%202.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="39.0" fitWidth="36.0" layoutX="18.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/telegram.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/interface_icons/home.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+        <Group layoutX="50.0" layoutY="23.0" />
+      <Pane layoutX="72.0" prefHeight="60.0" prefWidth="729.0" style="-fx-background-color: #354550;">
+         <children>
+            <TextField alignment="BOTTOM_LEFT" layoutX="437.0" layoutY="16.0" prefHeight="28.0" prefWidth="223.0" promptText="Search" style="-fx-border-color: #00d4ff;" />
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="14.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/interface_icons/add_insert_document.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="60.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/interface_icons/download_document_file.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="104.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/interface_icons/remove_delete_document.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="670.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/interface_icons/search.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <!--<SplitPane layoutX="72.0" layoutY="60.0" opacity="0.47" prefHeight="541.0" prefWidth="729.0" />-->
+        <SplitPane dividerPositions="0.5" layoutX="72.0" layoutY="60.0" prefHeight="541.0" prefWidth="729.0" xmlns:fx="http://javafx.com/fxml">
+            <items>
+                <fx:include fx:id="clientPanel" source="LocalStorage.fxml" />
+                <fx:include fx:id="serverPanel" source="CloudStorage.fxml" />
+            </items>
+        </SplitPane>
+    </children>
+</AnchorPane>

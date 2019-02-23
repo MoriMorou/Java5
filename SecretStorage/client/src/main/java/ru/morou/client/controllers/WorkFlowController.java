@@ -1,21 +1,19 @@
-package com.flamexander.netty.example.client;
+package ru.morou.client.controllers;
 
-<<<<<<< HEAD
-import com.flamexander.netty.example.client.protocol.NettyNetwork;
-=======
-
->>>>>>> mycloud
-import com.flamexander.netty.example.common.AbstractMessage;
-import com.flamexander.netty.example.common.FileMessage;
-import com.flamexander.netty.example.common.FileRequest;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import ru.morou.api.AbstractMessage;
+import ru.morou.api.FileMessage;
+import ru.morou.api.FileRequest;
+import ru.morou.client.Network;
+import ru.morou.client.views.LocalStorageView;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -23,12 +21,19 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ResourceBundle;
 
-public class MainController implements Initializable {
+public class WorkFlowController implements Initializable {
     @FXML
-    TextField tfFileName;
+    public TextField tfFileName;
 
     @FXML
-    ListView<String> filesList;
+    public ListView filesList;
+
+    @FXML
+    AnchorPane CloudStorage;
+
+    @FXML
+    AnchorPane LocalStorage;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -76,7 +81,7 @@ public class MainController implements Initializable {
         if (Platform.isFxApplicationThread()) {
             try {
                 filesList.getItems().clear();
-                Files.list(Paths.get("client_storage")).map(p -> p.getFileName().toString()).forEach(o -> filesList.getItems().add(o));
+                Files.list(Paths.get("client_storage/")).map(p -> p.getFileName().toString()).forEach(o -> filesList.getItems().add(o));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -84,7 +89,7 @@ public class MainController implements Initializable {
             Platform.runLater(() -> {
                 try {
                     filesList.getItems().clear();
-                    Files.list(Paths.get("client_storage")).map(p -> p.getFileName().toString()).forEach(o -> filesList.getItems().add(o));
+                    Files.list(Paths.get("client_storage/")).map(p -> p.getFileName().toString()).forEach(o -> filesList.getItems().add(o));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
