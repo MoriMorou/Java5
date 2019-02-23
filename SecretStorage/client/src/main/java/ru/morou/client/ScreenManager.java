@@ -41,7 +41,7 @@ public class ScreenManager {
         Platform.runLater(()->{
             stage.close();
             try {
-                Parent root = FXMLLoader.load(ScreenManager.class.getResource("/WorkFlow.fxml"));
+                Parent root = FXMLLoader.load(ScreenManager.class.getResource("/WorkFlow2.fxml"));
                 stage.setTitle("Cloud storage client");
                 stage.setScene(new Scene(root, 800, 600));
                 stage.setResizable(false);
