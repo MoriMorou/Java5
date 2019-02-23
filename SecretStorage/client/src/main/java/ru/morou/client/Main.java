@@ -1,19 +1,19 @@
 package ru.morou.client;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+/**
+ * Основной класс.
+ * Управление сценами идет через менеджер сцен.
+ */
 
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/menu.fxml"));
-        primaryStage.setTitle("Secret Storage");
-        primaryStage.setScene(new Scene(root, 800, 600));
-        primaryStage.show();
+    public void start(Stage primaryStage) {
+        ScreenManager.setStage(primaryStage);
+        ScreenManager.showLoginScreen();
     }
 
 
@@ -21,3 +21,4 @@ public class Main extends Application {
         launch(args);
     }
 }
+

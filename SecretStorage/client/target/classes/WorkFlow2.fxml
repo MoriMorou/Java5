@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.morou.client.controllers.WorkFlowController">
+    <children>
+      <Pane prefHeight="600.0" prefWidth="72.0" style="-fx-background-color: #2A363F;">
+         <children>
+            <ImageView fitHeight="39.0" fitWidth="36.0" layoutX="18.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/whatsapp.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="46.0" fitWidth="42.0" layoutX="15.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/dropbox.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="39.0" fitWidth="36.0" layoutX="18.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/fb%202.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="39.0" fitWidth="36.0" layoutX="18.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/vk%202.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="39.0" fitWidth="36.0" layoutX="18.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/telegram.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/interface_icons/home.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+        <Group layoutX="50.0" layoutY="23.0" />
+      <Pane layoutX="72.0" prefHeight="60.0" prefWidth="729.0" style="-fx-background-color: #354550;">
+         <children>
+            <TextField alignment="BOTTOM_LEFT" layoutX="437.0" layoutY="16.0" prefHeight="28.0" prefWidth="223.0" promptText="Search" style="-fx-border-color: #00d4ff;" />
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="14.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/interface_icons/add_insert_document.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="60.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/interface_icons/download_document_file.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="104.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/interface_icons/remove_delete_document.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="670.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/interface_icons/search.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <SplitPane dividerPositions="0.5006877579092159" layoutX="72.0" layoutY="60.0" opacity="0.47" prefHeight="541.0" prefWidth="729.0">
+        <items>
+          <AnchorPane fx:id="CloudStorage" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <VBox prefHeight="539.0" prefWidth="426.0">
+                     <children>
+                        <Label text="Local Storage">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets left="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TableView prefHeight="516.0" prefWidth="498.0">
+                           <columns>
+                              <TableColumn prefWidth="211.0" text="Name" />
+                              <TableColumn prefWidth="110.0" text="Type" />
+                              <TableColumn prefWidth="79.0" text="Size" />
+                           </columns>
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem mnemonicParsing="false" text="Open" />
+                                    <MenuItem mnemonicParsing="false" text="Rename" />
+                                    <MenuItem mnemonicParsing="false" text="Add" />
+                                    <MenuItem mnemonicParsing="false" text="Copy" />
+                                    <MenuItem mnemonicParsing="false" text="Delete" />
+                                    <MenuItem mnemonicParsing="false" text="New Folder" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu>
+                        </TableView>
+                     </children>
+                  </VBox>
+                  <ImageView fitHeight="311.0" fitWidth="246.0" layoutX="457.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00d4ff;" />
+                  <Text layoutX="457.0" layoutY="401.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
+                  <Text layoutX="463.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type:" />
+                  <Text layoutX="465.0" layoutY="437.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Size:" />
+               </children></AnchorPane>
+          <AnchorPane fx:id="LocalStorage" minHeight="0.0" minWidth="0.0" prefHeight="539.0" prefWidth="504.0">
+               <children>
+                  <VBox prefHeight="539.0" prefWidth="426.0">
+                     <children>
+                        <Label text="Cloud Storage">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets left="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TableView prefHeight="516.0" prefWidth="498.0">
+                          <columns>
+                            <TableColumn prefWidth="211.0" text="Name" />
+                            <TableColumn prefWidth="110.0" text="Type" />
+                              <TableColumn prefWidth="79.0" text="Size" />
+                          </columns>
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                    <MenuItem mnemonicParsing="false" text="Open" />
+                                  <MenuItem mnemonicParsing="false" text="Save" />
+                                    <MenuItem mnemonicParsing="false" text="Rename" />
+                                    <MenuItem mnemonicParsing="false" text="Copy" />
+                                    <MenuItem mnemonicParsing="false" text="Delete" />
+                                    <MenuItem mnemonicParsing="false" text="New Folder" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu>
+                        </TableView>
+                     </children>
+                  </VBox>
+                  <ImageView fitHeight="311.0" fitWidth="246.0" layoutX="447.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #00d4ff;" />
+                  <Text layoutX="447.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
+                  <Text layoutX="453.0" layoutY="409.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type:" />
+                  <Text layoutX="455.0" layoutY="427.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Size:" />
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
+    </children>
+</AnchorPane>
