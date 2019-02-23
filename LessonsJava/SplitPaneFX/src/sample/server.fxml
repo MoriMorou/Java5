@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="sample.Server">
+    <HBox>
+        <Button text="#1" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#btnClick"/>
+        <Button text="#2" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#btnClick"/>
+        <Button text="#3" HBox.hgrow="ALWAYS" maxWidth="Infinity" onAction="#btnClick"/>
+    </HBox>
+    <ListView VBox.vgrow="ALWAYS"/>
+</VBox>
