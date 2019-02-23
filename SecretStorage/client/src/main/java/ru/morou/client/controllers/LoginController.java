@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import static ru.morou.client.ScreenManager.showWorkFlowScreen;
 
 public class LoginController {
+
     @FXML
     PasswordField password;
 
