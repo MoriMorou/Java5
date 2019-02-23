@@ -1,0 +1,22 @@
+<?import javafx.scene.control.*?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<SplitPane fx:controller="sample.joint.Controller" xmlns:fx="http://javafx.com/fxml">
+    <items>
+        <VBox fx:id="clientArea">
+            <TextArea VBox.vgrow="ALWAYS"/>
+            <TextField />
+        </VBox>
+
+        <VBox fx:id="serverArea">
+            <HBox>
+                <Button text="#1" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                <Button text="#2" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                <Button text="#3" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+            </HBox>
+            <ListView VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </items>
+</SplitPane>

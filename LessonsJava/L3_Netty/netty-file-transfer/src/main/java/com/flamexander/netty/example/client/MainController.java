@@ -1,6 +1,10 @@
 package com.flamexander.netty.example.client;
 
+<<<<<<< HEAD
+import com.flamexander.netty.example.client.protocol.NettyNetwork;
+=======
 
+>>>>>>> mycloud
 import com.flamexander.netty.example.common.AbstractMessage;
 import com.flamexander.netty.example.common.FileMessage;
 import com.flamexander.netty.example.common.FileRequest;
