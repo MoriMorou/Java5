@@ -30,13 +30,13 @@ public class CloudServer {
 
     // Читаем парамметры, которые необходимы для подключения сервера
 
-    private void readServerProperties(){
-        try (Reader in = new InputStreamReader(this.getClass().getResourceAsStream("/server.properties"))){
+    private void readServerProperties() {
+        try (Reader in = new InputStreamReader(this.getClass().getResourceAsStream("/server.properties"))) {
             Properties properties = new Properties();
             properties.load(in);
             HOST = properties.getProperty("host");
             DEFAULT_PORT = Integer.parseInt(properties.getProperty("port"));
-            folder= Paths.get(properties.getProperty("folder"));
+            folder = Paths.get(properties.getProperty("folder"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,22 +53,19 @@ public class CloudServer {
             // 3.2 Создаем вспомогательный класс Bootstrap, который представляет собой серию настроек для нашего Сервера
             ServerBootstrap b = new ServerBootstrap();
             b.group(mainGroup, wokerGroup)
-                    // В частве канала используется NioServerSocketChannel
+                    // В качестве канала используется NioServerSocketChannel
                     .channel(NioServerSocketChannel.class)
                     // Для каждого клиента создается обрабодчик childHandler
-                    .childHandler((ChannelInitializer)(socketChannel) -> (
+                    .childHandler(new ChannelInitializer<SocketChannel>() {
+                        protected void initChannel(SocketChannel socketChannel) throws Exception {
                             // Для каждого клиента строим конвеер pipeline() и добавляем обработчик
                             socketChannel.pipeline().addLast(
-                                    new ObjectDecoder(50 * 1024 * 1024, ClassResolvers.cacheDisabled(null)),
+                                    new ObjectDecoder(MAX_OBJ_SIZE, ClassResolvers.cacheDisabled(null)),
                                     new ObjectEncoder(),
-                                    new MainHandler()
-                            ));
+                                    new CloudServerHandler()
+                            );
+                        }
+                    });
         }
-
-
-
-
-
-
     }
 }
