@@ -19,8 +19,9 @@ public class ScreenManager {
         stage = newStage;
     }
 
-    // FIXME: Каждая сцена описана отдельно, это правильно? 2019-02-20
-    // FIXME: Чем отличается Platform.runLater от Task, когда что следует использовать?
+    // Platform.runLater - структура FX(специальная), которая опрокидывает задачу в поток, который занимается.
+    // Применется только если мы обращаемся к интерфейсу не из потока java FX
+    // обработкой интерфейса
     public static void showLoginScreen(){
         Platform.runLater(()->{
             stage.close();
