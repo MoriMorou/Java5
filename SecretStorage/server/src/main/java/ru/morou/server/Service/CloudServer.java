@@ -29,7 +29,6 @@ public class CloudServer {
 
 
     // Читаем парамметры, которые необходимы для подключения сервера
-
     private void readServerProperties() {
         try (Reader in = new InputStreamReader(this.getClass().getResourceAsStream("/server.properties"))) {
             Properties properties = new Properties();
@@ -59,15 +58,25 @@ public class CloudServer {
                     .channel(NioServerSocketChannel.class)
                     // Для каждого клиента создается обрабодчик childHandler
                     .childHandler(new ChannelInitializer<SocketChannel>() {
-                        protected void initChannel(SocketChannel socketChannel) throws Exception {
+                        protected void initChannel(SocketChannel ch) throws Exception {
                             // Для каждого клиента строим конвеер pipeline() и добавляем обработчик
-                            socketChannel.pipeline().addLast(
+                            ch.pipeline().addLast(
                                     new ObjectDecoder(MAX_OBJ_SIZE, ClassResolvers.cacheDisabled(null)),
                                     new ObjectEncoder(),
                                     new CloudServerHandler()
                             );
                         }
-                    });
+                    })
+                    .option(ChannelOption.SO_BACKLOG, 128)
+//                    .option(ChannelOption.TCP_NODELAY, true)
+                    .childOption(ChannelOption.SO_KEEPALIVE, true);
+            // Установка связи и начало принятия входящиго соединения.
+            ChannelFuture future = b.bind(DEFAULT_PORT).sync();
+            // Дождаться закрытия сокета сервера.
+            future.channel().closeFuture().sync();
+        } finally {
+            mainGroup.shutdownGracefully();
+            wokerGroup.shutdownGracefully();
         }
     }
 }
