@@ -43,6 +43,7 @@ public class CloudServer {
     }
 
     public void run() throws Exception {
+        // Creates the EventLoopGroup
         // 1 Первая группа потоков используется для получения клиентского соединения.
         EventLoopGroup mainGroup = new NioEventLoopGroup();
         // 2 Вторая группа потоков используется для фактических операций c данными.
@@ -50,6 +51,7 @@ public class CloudServer {
         try {
             // 3.1 Считываем даннае конфигурации для сервера
             readServerProperties();
+            // Creates the EventLoopGroup
             // 3.2 Создаем вспомогательный класс Bootstrap, который представляет собой серию настроек для нашего Сервера
             ServerBootstrap b = new ServerBootstrap();
             b.group(mainGroup, wokerGroup)
