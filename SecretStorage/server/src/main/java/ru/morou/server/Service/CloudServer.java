@@ -42,19 +42,27 @@ public class CloudServer {
         }
     }
 
-    public void run() {
-        // Первая группа потоков используется для получения клиентского соединения.
+    public void run() throws Exception {
+        // 1 Первая группа потоков используется для получения клиентского соединения.
         EventLoopGroup mainGroup = new NioEventLoopGroup();
-        // Вторая группа потоков используется для фактических операций c данными.
+        // 2 Вторая группа потоков используется для фактических операций c данными.
         EventLoopGroup wokerGroup = new NioEventLoopGroup();
         try {
+            // 3.1 Считываем даннае конфигурации для сервера
             readServerProperties();
+            // 3.2 Создаем вспомогательный класс Bootstrap, который представляет собой серию настроек для нашего Сервера
             ServerBootstrap b = new ServerBootstrap();
             b.group(mainGroup, wokerGroup)
+                    // В частве канала используется NioServerSocketChannel
                     .channel(NioServerSocketChannel.class)
+                    // Для каждого клиента создается обрабодчик childHandler
                     .childHandler((ChannelInitializer)(socketChannel) -> (
+                            // Для каждого клиента строим конвеер pipeline() и добавляем обработчик
                             socketChannel.pipeline().addLast(
-                            ))
+                                    new ObjectDecoder(50 * 1024 * 1024, ClassResolvers.cacheDisabled(null)),
+                                    new ObjectEncoder(),
+                                    new MainHandler()
+                            ));
         }
 
 
