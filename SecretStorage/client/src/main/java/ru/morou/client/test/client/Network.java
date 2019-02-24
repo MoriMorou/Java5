@@ -1,41 +1,20 @@
-package ru.morou.client;
+package ru.morou.client.test.client;
 
 import io.netty.handler.codec.serialization.ObjectDecoderInputStream;
 import io.netty.handler.codec.serialization.ObjectEncoderOutputStream;
 import ru.morou.api.AbstractMessage;
 
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.net.Socket;
-import java.nio.file.Paths;
-import java.util.Properties;
 
 public class Network {
     private static Socket socket;
     private static ObjectEncoderOutputStream out;
     private static ObjectDecoderInputStream in;
 
-
-//    private void readClientProperties() {
-//        try (Reader in = new InputStreamReader(this.getClass().getResourceAsStream("/client.properties"))) {
-//            Properties properties = new Properties();
-//            properties.load(in);
-//            host = properties.getProperty("host");
-//            port = Integer.parseInt(properties.getProperty("port"));
-//            localFolder = Paths.get(properties.getProperty("folder"));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-
-
-
-
     public static void start() {
         try {
-            socket = new Socket("localhost", 8888);
+            socket = new Socket("localhost", 6666);
             out = new ObjectEncoderOutputStream(socket.getOutputStream());
             in = new ObjectDecoderInputStream(socket.getInputStream());
         } catch (IOException e) {
