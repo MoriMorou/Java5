@@ -16,26 +16,9 @@ public class Network {
     private static ObjectEncoderOutputStream out;
     private static ObjectDecoderInputStream in;
 
-
-//    private void readClientProperties() {
-//        try (Reader in = new InputStreamReader(this.getClass().getResourceAsStream("/client.properties"))) {
-//            Properties properties = new Properties();
-//            properties.load(in);
-//            host = properties.getProperty("host");
-//            port = Integer.parseInt(properties.getProperty("port"));
-//            localFolder = Paths.get(properties.getProperty("folder"));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-
-
-
-
     public static void start() {
         try {
-            socket = new Socket("localhost", 8888);
+            socket = new Socket("localhost", 8080);
             out = new ObjectEncoderOutputStream(socket.getOutputStream());
             in = new ObjectDecoderInputStream(socket.getInputStream());
         } catch (IOException e) {

@@ -6,16 +6,33 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import static ru.morou.client.ScreenManager.showWorkFlowScreen;
+import static ru.morou.client.ScreenManager.showRegistrationScreen;
 
 public class LoginController {
 
     @FXML
-    PasswordField password;
+    TextField username;
 
     @FXML
-    TextField login;
+    PasswordField password;
 
-    public void btnSignInOnAction(ActionEvent actionEvent) throws Exception {
+
+    public void btnConnection(ActionEvent actionEvent) throws Exception {
+
+
+
+
+
         showWorkFlowScreen();
+
+
+    }
+
+
+
+
+
+    public void btnlogIn(ActionEvent actionEvent) throws Exception {
+        showRegistrationScreen();
     }
 }

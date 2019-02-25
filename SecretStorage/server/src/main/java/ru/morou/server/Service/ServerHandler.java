@@ -7,10 +7,16 @@ import ru.morou.api.FileMessage;
 import ru.morou.api.FileRequest;
 
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class CloudServerHandler extends ChannelInboundHandlerAdapter {
 
+
+
+
+public class ServerHandler extends ChannelInboundHandlerAdapter {
+
+    //метод channelRead () вызывается при получении данных.
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         try {
@@ -21,7 +27,7 @@ public class CloudServerHandler extends ChannelInboundHandlerAdapter {
                 FileRequest fr = (FileRequest) msg;
                 if (Files.exists(Paths.get("server_storage/" + fr.getFilename()))) {
                     FileMessage fm = new FileMessage(Paths.get("server_storage/" + fr.getFilename()));
-                    ctx.writeAndFlush(fr);
+                    ctx.writeAndFlush(fm);
                 }
             }
         } finally {

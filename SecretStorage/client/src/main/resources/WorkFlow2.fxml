@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.morou.client.controllers.WorkFlowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.morou.client.controllers.WorkFlowController">
     <children>
       <Pane prefHeight="600.0" prefWidth="72.0" style="-fx-background-color: #2A363F;">
          <children>
@@ -25,19 +25,9 @@
                   <Image url="@icons/whatsapp.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="46.0" fitWidth="42.0" layoutX="15.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="46.0" fitWidth="42.0" layoutX="15.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@icons/dropbox.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="39.0" fitWidth="36.0" layoutX="18.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@icons/fb%202.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="39.0" fitWidth="36.0" layoutX="18.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@icons/vk%202.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="39.0" fitWidth="36.0" layoutX="18.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
@@ -94,9 +84,9 @@
                         </Label>
                         <TableView prefHeight="516.0" prefWidth="498.0">
                            <columns>
-                              <TableColumn prefWidth="211.0" text="Name" />
-                              <TableColumn prefWidth="110.0" text="Type" />
-                              <TableColumn prefWidth="79.0" text="Size" />
+                              <TableColumn fx:id="fileName" prefWidth="211.0" text="Name" />
+                              <TableColumn fx:id="fileType" prefWidth="110.0" text="Type" />
+                              <TableColumn fx:id="fileSize" prefWidth="79.0" text="Size" />
                            </columns>
                            <contextMenu>
                               <ContextMenu>
@@ -132,9 +122,9 @@
                         </Label>
                         <TableView prefHeight="516.0" prefWidth="498.0">
                           <columns>
-                            <TableColumn prefWidth="211.0" text="Name" />
-                            <TableColumn prefWidth="110.0" text="Type" />
-                              <TableColumn prefWidth="79.0" text="Size" />
+                            <TableColumn fx:id="fileName" prefWidth="211.0" text="Name" />
+                            <TableColumn fx:id="fileType" prefWidth="110.0" text="Type" />
+                              <TableColumn fx:id="fileSize" prefWidth="79.0" text="Size" />
                           </columns>
                            <contextMenu>
                               <ContextMenu>

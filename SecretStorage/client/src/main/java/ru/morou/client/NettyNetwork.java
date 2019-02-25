@@ -36,7 +36,7 @@ public class NettyNetwork {
             Bootstrap clientBootstrap = new Bootstrap();
             clientBootstrap.group(group);
             clientBootstrap.channel(NioSocketChannel.class);
-            clientBootstrap.remoteAddress(new InetSocketAddress("localhost", 8189));
+            clientBootstrap.remoteAddress(new InetSocketAddress("localhost", 8080));
             clientBootstrap.handler(new ChannelInitializer<SocketChannel>() {
                 protected void initChannel(SocketChannel socketChannel) throws Exception {
                     socketChannel.pipeline().addLast();

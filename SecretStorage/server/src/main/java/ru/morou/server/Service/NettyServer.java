@@ -20,12 +20,16 @@ import java.nio.file.Paths;
 import java.util.Properties;
 
 
-public class CloudServer {
+public class NettyServer {
 
     private String HOST;
     private int DEFAULT_PORT;
-    private Path folder;
+    private Path FOLDER;
     private static final int MAX_OBJ_SIZE = 1024 * 1024 * 10;
+
+    public NettyServer(){
+
+    }
 
 
     // Читаем парамметры, которые необходимы для подключения сервера
@@ -35,7 +39,7 @@ public class CloudServer {
             properties.load(in);
             HOST = properties.getProperty("host");
             DEFAULT_PORT = Integer.parseInt(properties.getProperty("port"));
-            folder = Paths.get(properties.getProperty("folder"));
+            FOLDER = Paths.get(properties.getProperty("folder"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -61,9 +65,10 @@ public class CloudServer {
                         protected void initChannel(SocketChannel ch) throws Exception {
                             // Для каждого клиента строим конвеер pipeline() и добавляем обработчик
                             ch.pipeline().addLast(
+                                    new AuthHandler(),
                                     new ObjectDecoder(MAX_OBJ_SIZE, ClassResolvers.cacheDisabled(null)),
                                     new ObjectEncoder(),
-                                    new CloudServerHandler()
+                                    new ServerHandler()
                             );
                         }
                     })

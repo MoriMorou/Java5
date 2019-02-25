@@ -1,9 +1,10 @@
 package ru.morou.server;
 
-import ru.morou.server.Service.CloudServer;
+
+import ru.morou.server.Service.NettyServer;
 
 public class Main {
     public static void main(String[] args) throws Exception{
-        new CloudServer().run();
+        new NettyServer().run();
     }
 }

@@ -37,6 +37,21 @@ public class ScreenManager {
         });
     }
 
+    public static void showRegistrationScreen(){
+        Platform.runLater(()->{
+            stage.close();
+            try {
+                Parent root = FXMLLoader.load(ScreenManager.class.getResource("/Registration.fxml"));
+                stage.setTitle("Secret Storage");
+                stage.setScene(new Scene(root, 800, 600));
+                stage.setResizable(false);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
     public static void showWorkFlowScreen(){
         Platform.runLater(()->{
             stage.close();
