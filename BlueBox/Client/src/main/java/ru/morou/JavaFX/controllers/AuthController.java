@@ -77,7 +77,7 @@ public class AuthController extends Controller implements Initializable {
     /**
      * Перейти к экрану регистрации
      */
-    @FXML public void doToRegistrationForm() {
+    @FXML public void goToRegistrationForm() {
         ScreenManager.showRegistrationScreen();
     }
 
