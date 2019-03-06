@@ -4,24 +4,35 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import ru.morou.api.AbstractMessage;
-import ru.morou.api.FileMessage;
-import ru.morou.api.FileRequest;
+import ru.morou.api.AuthMessage;
+import ru.morou.api.CodeRequest;
 import ru.morou.client.Network;
-import ru.morou.client.views.LocalStorageView;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.ResourceBundle;
 
+import static ru.morou.client.ScreenManager.showRegistrationScreen;
+
 public class WorkFlowController implements Initializable {
+
+    @FXML
+    TextField tfNickname;
+
+    @FXML
+    PasswordField pfPassword;
+
+    @FXML
+    Button btnConnection;
+
     @FXML
     public TextField tfFileName;
 
@@ -35,24 +46,46 @@ public class WorkFlowController implements Initializable {
     AnchorPane LocalStorage;
 
 
+    private boolean isAuthrozied;
+    private boolean isConnection;
+
+    public void registration(ActionEvent actionEvent) throws Exception{
+        showRegistrationScreen();
+    }
+
+
+    public void connection(ActionEvent actionEvent) throws Exception{
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Network.start();
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                NettyNetwork.getInstance().start();
-//            }
-//        }).start();
 
+//        Consumer<KeyEvent> сheckingСredentials = keyEvent -> {
+//            if (tfNickname.getText().trim().isEmpty() || pfPassword.getText().trim().isEmpty()) {
+//                btnConnection.setDisable(true);
+//            } else {
+//                btnConnection.setDisable(false);
+//                if (keyEvent.getCode().equals(KeyCode.ENTER))
+//                    btnConnection.fire();
+//            }
+//        };
+//
+//        tfNickname
+//            .setOnKeyReleased(сheckingСredentials::accept);
+//
+//        pfPassword
+//            .setOnKeyReleased(сheckingСredentials::accept);
+//
+
+
+        Network.start();
         Thread t = new Thread(() -> {
             try {
                 while (true) {
                     AbstractMessage am = Network.readObject();
-                    if (am instanceof FileMessage) {
-                        FileMessage fm = (FileMessage) am;
-                        Files.write(Paths.get("client_storage/" + fm.getFilename()), fm.getData(), StandardOpenOption.CREATE);
-                        refreshLocalFilesList();
+                    if (am instanceof AuthMessage) {
+                        AuthMessage authMessage = (AuthMessage) am;
                     }
                 }
             } catch (ClassNotFoundException | IOException e) {
@@ -68,7 +101,7 @@ public class WorkFlowController implements Initializable {
 
     public void pressOnDownloadBtn(ActionEvent actionEvent) {
         if (tfFileName.getLength() > 0) {
-            Network.sendMsg(new FileRequest(tfFileName.getText()));
+            Network.sendMsg(new CodeRequest(tfFileName.getText()));
             tfFileName.clear();
         }
     }

@@ -16,7 +16,6 @@ public class Main extends Application {
         ScreenManager.showLoginScreen();
     }
 
-
     public static void main(String[] args) {
         launch(args);
     }

@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #2A363F;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.morou.client.controllers.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #2A363F;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.morou.client.controllers.RegistrationController">
    <children>
       <Pane layoutX="299.0" layoutY="419.0" prefHeight="93.0" prefWidth="200.0">
          <children>
@@ -28,10 +28,9 @@
       </Pane>
       <PasswordField fx:id="password" layoutX="115.0" layoutY="239.0" prefHeight="36.0" prefWidth="274.0" promptText="Password" />
       <Line endX="-100.0" endY="58.0" layoutX="499.0" layoutY="222.0" startX="-100.0" startY="-54.0" stroke="#0dff00" />
-      <TextField fx:id="login" layoutX="115.0" layoutY="176.0" prefHeight="36.0" prefWidth="274.0" promptText="Login" />
-      <Button layoutX="263.0" layoutY="365.0" mnemonicParsing="false" onAction="#btnSignInOnAction" prefHeight="36.0" prefWidth="274.0" text="SUBMIT" textFill="#457666" />
+      <Button layoutX="263.0" layoutY="365.0" mnemonicParsing="false" onAction="#btnDoRegistration" prefHeight="36.0" prefWidth="274.0" text="SUBMIT" textFill="#457666" />
       <Button layoutX="627.0" layoutY="52.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="159.0" style="-fx-background-color: #2A363F;" text="Settings" textFill="#00d4ff" />
-      <Button layoutX="36.0" layoutY="36.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="30.0" style="-fx-background-color: #2A363F;" />
+      <Button layoutX="21.0" layoutY="23.0" mnemonicParsing="false" onAction="#goHome" prefHeight="27.0" prefWidth="30.0" style="-fx-background-color: #2A363F;" />
       <Group layoutX="50.0" layoutY="23.0">
          <children>
             <Line layoutX="1.2426414489746094" startX="-30.0" stroke="#00d4ff" strokeDashOffset="10.0" strokeWidth="6.0" />
@@ -39,9 +38,10 @@
             <Line layoutX="1.0" layoutY="13.0" startX="-30.0" stroke="#00d4ff" strokeDashOffset="10.0" strokeWidth="6.0" />
          </children>
       </Group>
-      <PasswordField fx:id="password1" layoutX="410.0" layoutY="239.0" prefHeight="36.0" prefWidth="274.0" promptText="SECOND NAME" />
-      <TextField fx:id="login1" layoutX="410.0" layoutY="176.0" prefHeight="36.0" prefWidth="274.0" promptText="FIRST NAME" />
-      <PasswordField fx:id="password11" layoutX="116.0" layoutY="300.0" prefHeight="36.0" prefWidth="566.0" promptText="E-Mail" />
+      <TextField fx:id="email" layoutX="116.0" layoutY="300.0" prefHeight="36.0" prefWidth="566.0" promptText="E-Mail" />
       <Button layoutX="627.0" layoutY="23.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="159.0" style="-fx-background-color: #2A363F;" text="Need help?" textFill="#00d4ff" />
+      <TextField fx:id="login" layoutX="115.0" layoutY="176.0" prefHeight="36.0" prefWidth="274.0" promptText="Login" />
+      <TextField fx:id="secondName" layoutX="408.0" layoutY="239.0" prefHeight="36.0" prefWidth="274.0" promptText="Second Name" />
+      <TextField fx:id="firstName" layoutX="408.0" layoutY="176.0" prefHeight="36.0" prefWidth="274.0" promptText="First Name" />
    </children>
 </AnchorPane>
