@@ -109,9 +109,9 @@ public class MessagesProcessor {
 
 
     			} else
-    				logger.error("File for transfer is empty or doesn't exists");
+    				logger.error("FileBox for transfer is empty or doesn't exists");
     		} catch (Exception e) {
-    			logger.error("File transference failed: " + e.getMessage(), e);
+    			logger.error("FileBox transference failed: " + e.getMessage(), e);
     		}
     	});
     	t.setDaemon(true);

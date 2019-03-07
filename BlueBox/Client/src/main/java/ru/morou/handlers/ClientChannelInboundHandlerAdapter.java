@@ -40,7 +40,7 @@ public class ClientChannelInboundHandlerAdapter extends ChannelInboundHandlerAda
 				if (jsonSend.getPartsAmount() == 0)            // передача файла прошла успешно
 					processor.refreshFilesOnClient();
 				else
-					Controller.throwAlertMessage("ERROR", "File transferring failed.");
+					Controller.throwAlertMessage("ERROR", "FileBox transferring failed.");
 
 				break;
 			case CONFIRMATION:
@@ -48,7 +48,7 @@ public class ClientChannelInboundHandlerAdapter extends ChannelInboundHandlerAda
 				if (jsonConfirm.getConfirmation())
 					processor.refreshFilesOnServer(jsonConfirm.getFiles());
 				else
-					Controller.throwAlertMessage("Error", "File transmitting failed");
+					Controller.throwAlertMessage("Error", "FileBox transmitting failed");
 				break;
 			case MESSAGE:
 				JsonSimpleMessage jsonMsg = (JsonSimpleMessage)json;

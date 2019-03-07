@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "files")
-public class File {
+public class FileBox {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +24,7 @@ public class File {
     private int size;
 
 
-    public File(String filename, String author, int data, int size) {
+    public FileBox(String filename, String author, int data, int size) {
         this.filename = filename;
         this.author = author;
         this.data = data;
@@ -73,7 +73,7 @@ public class File {
 
     @Override
     public String toString() {
-        return "File{" +
+        return "FileBox{" +
                 "id='" + id + '\'' +
                 ", filename='" + filename + '\'' +
                 ", author='" + author + '\'' +

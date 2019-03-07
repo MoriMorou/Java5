@@ -142,7 +142,7 @@ public class MessageDecodeHelper  {
 								// контрольная сумма не сошлась - файл получен с ошибками
 								throw new CheckSumException(file.getName());
 							} else
-								logger.debug("File "+file.toString()+" received successfully, checksum is valid.");
+								logger.debug("FileBox "+file.toString()+" received successfully, checksum is valid.");
 						} catch (Exception e) {
 							logger.debug("Testing CheckSum of file "+ file.toString() +" failed: "+e.getMessage(), e);
 							json.setPartsAmount(-1);

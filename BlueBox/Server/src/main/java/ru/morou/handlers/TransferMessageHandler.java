@@ -159,7 +159,7 @@ public class TransferMessageHandler extends SimpleChannelInboundHandler<Standard
 			file = Paths.get(pathToFile).toFile();
 			fileSize = (long) Files.getAttribute(file.toPath(), "basic:size");
 		} catch (Exception e) {
-			logger.error("File for transfer ("+pathToFile+") doesn't exists: "+e.getMessage(),e);
+			logger.error("FileBox for transfer ("+pathToFile+") doesn't exists: "+e.getMessage(),e);
 			
 			try {
 				ctx.writeAndFlush(FileTransferHelper
@@ -191,7 +191,7 @@ public class TransferMessageHandler extends SimpleChannelInboundHandler<Standard
 					ctx.writeAndFlush(transference);
 				} 
 			} catch (Exception e) {
-				logger.error("File ("+pathToFile+") transference failed: " + e.getMessage(), e);
+				logger.error("FileBox ("+pathToFile+") transference failed: " + e.getMessage(), e);
 				
 				try {
 					ctx.writeAndFlush(FileTransferHelper

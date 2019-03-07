@@ -87,7 +87,7 @@ public class FilesProcessor {
 			log = "   Directory "+filePath+" and its contents deleted";
 		} else {
 			Files.delete(path);
-			log = "   File "+filePath+" deleted";
+			log = "   FileBox "+filePath+" deleted";
 		}
 		return log;
 	}

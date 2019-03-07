@@ -20,11 +20,11 @@ public class Folder {
 
     @OneToMany(mappedBy = "folder")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
-    private List<File> files;
+    private List<FileBox> fileBoxes;
 
-    public Folder(String folder, List<File> files) {
+    public Folder(String folder, List<FileBox> fileBoxes) {
         this.folder = folder;
-        this.files = files;
+        this.fileBoxes = fileBoxes;
     }
 
     public int getId_folder() {
@@ -43,12 +43,12 @@ public class Folder {
         this.folder = folder;
     }
 
-    public List<File> getFiles() {
-        return files;
+    public List<FileBox> getFileBoxes() {
+        return fileBoxes;
     }
 
-    public void setFiles(List<File> files) {
-        this.files = files;
+    public void setFileBoxes(List<FileBox> fileBoxes) {
+        this.fileBoxes = fileBoxes;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class Folder {
         return "Folder{" +
                 "id_folder=" + id_folder +
                 ", folder='" + folder + '\'' +
-                ", files=" + files +
+                ", fileBoxes=" + fileBoxes +
                 '}';
     }
 }

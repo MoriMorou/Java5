@@ -194,7 +194,7 @@ public class MainSceneController extends Controller implements Initializable {
 		if (currentTargetClient != null) {
 			filePath = currentTargetClient.getFile().toPath().toString();
 			
-			if (getConfirmation("Delete File or Directory", "Are you sure want to remove "+filePath+"?") == ButtonType.CANCEL)
+			if (getConfirmation("Delete FileBox or Directory", "Are you sure want to remove "+filePath+"?") == ButtonType.CANCEL)
 					return;
 			
 			try {
@@ -216,7 +216,7 @@ public class MainSceneController extends Controller implements Initializable {
 		} else if (currentTargetServer != null) {
 			filePath = currentDirServer + currentTargetServer.getFileName();
 			
-			if (getConfirmation("Delete File or Directory", "Are you sure want to remove "+filePath+"?") == ButtonType.CANCEL)
+			if (getConfirmation("Delete FileBox or Directory", "Are you sure want to remove "+filePath+"?") == ButtonType.CANCEL)
 				return;
 		
 			MESSAGES_PROCESSOR.sendTransference(new JsonDelete(filePath));
@@ -256,7 +256,7 @@ public class MainSceneController extends Controller implements Initializable {
 		if (currentTargetClient != null) {
 			filePath = currentTargetClient.getFile().toPath();
 
-			newName = getAdditionalInformation("Rename File or Directory", 
+			newName = getAdditionalInformation("Rename FileBox or Directory",
 					                           "Input new name for "+filePath+":", 
 					                           currentTargetClient.getFileName());
 			if (newName == null)
@@ -279,7 +279,7 @@ public class MainSceneController extends Controller implements Initializable {
 		} else if (currentTargetServer != null) {
 			filePath = Paths.get(currentDirServer + currentTargetServer.getFileName());
 
-			newName = getAdditionalInformation("Rename File or Directory", 
+			newName = getAdditionalInformation("Rename FileBox or Directory",
 					                           "Input new name for "+filePath+":", 
 					                           currentTargetServer.getFileName());
 			if (newName == null)

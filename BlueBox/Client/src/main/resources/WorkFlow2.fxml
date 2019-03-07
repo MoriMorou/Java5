@@ -44,12 +44,12 @@
             </ImageView>
             <Button fx:id="btnAddAll" layoutX="27.0" layoutY="240.0" onAction="#btnAddAllClickMeReaction" textFill="#137bbf">
                <tooltip>
-                  <Tooltip text="Add all files" />
+                  <Tooltip text="Add all fileBoxes" />
                </tooltip>
             </Button>
             <Button fx:id="btnAdd" layoutX="27.0" layoutY="293.0" onAction="#btnAddClickMeReaction" textFill="#137bbf">
                <tooltip>
-                  <Tooltip text="Add all files" />
+                  <Tooltip text="Add all fileBoxes" />
                </tooltip>
             </Button>
             <Button fx:id="btnLoad" layoutX="27.0" layoutY="343.0" onAction="#btnLoadClickMeReaction" textFill="#137bbf">
