@@ -32,7 +32,7 @@ public class User {
     private String email;
 
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "user")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private List<Folder> folders;
 
