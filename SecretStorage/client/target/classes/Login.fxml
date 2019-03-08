@@ -30,8 +30,8 @@
       <PasswordField fx:id="pfPassword" layoutX="410.0" layoutY="262.0" prefHeight="36.0" prefWidth="274.0" promptText="Password" />
       <Line endX="-100.0" endY="243.0" layoutX="438.0" layoutY="222.0" startX="-100.0" startY="-81.0" stroke="#0dff00" />
       <TextField fx:id="tfNickname" layoutX="410.0" layoutY="192.0" prefHeight="36.0" prefWidth="274.0" promptText="Login" />
-      <Button fx:id="btnConnection" layoutX="410.0" layoutY="331.0" mnemonicParsing="false" onAction="#btnConnection" prefHeight="36.0" prefWidth="274.0" text="CONNECT" textFill="#457666" />
-      <Button layoutX="410.0" layoutY="391.0" mnemonicParsing="false" onAction="#btnRegistration" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #2A363F;" text="Registration" textFill="#00d4ff">
+      <Button fx:id="btnConnection" layoutX="410.0" layoutY="331.0" mnemonicParsing="false" onAction="#connection" prefHeight="36.0" prefWidth="274.0" text="CONNECT" textFill="#457666" />
+      <Button layoutX="410.0" layoutY="391.0" mnemonicParsing="false" onAction="#registration" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #2A363F;" text="Registration" textFill="#00d4ff">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
