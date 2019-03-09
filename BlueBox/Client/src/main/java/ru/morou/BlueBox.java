@@ -65,8 +65,8 @@ public class BlueBox {
 			clientBootstrap.handler(new ChannelInitializer<SocketChannel>() {
 				protected void initChannel(SocketChannel socketChannel) throws Exception {
 					socketChannel.pipeline().addLast(
-							new ClientMessageDecoder(),
 							new TransferMessageEncoder(),
+							new ClientMessageDecoder(),
 							new ClientChannelInboundHandlerAdapter());
 					currentChannel = socketChannel;
 				}

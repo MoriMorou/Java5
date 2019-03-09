@@ -2,13 +2,9 @@ package ru.morou.client;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-
-import java.net.InetSocketAddress;
 
 /**
  * ■ Экземпляр Bootstrap создается для инициализации клиента.
@@ -35,21 +31,14 @@ public class Client {
         try {
             //Создает "загрузочный ремешок"
             Bootstrap b = new Bootstrap ();
-            //Определяет EventLoopGroup для обработки клиентских событий; Нужна реализация NIO.
-            b.group (group)
+                    //Определяет EventLoopGroup для обработки клиентских событий; Нужна реализация NIO.
+                    b.group (group)
                     //Тип канала для транспорта NIO.
                     .channel (NioSocketChannel.class)
-                    //Устанавливает InetSocket-адрес сервера
-                    .remoteAddress (new InetSocketAddress (host, port))
                     //Добавляет клиент-обработчик в конвейер при создании канала
-                    .handler (new ChannelInitializer<SocketChannel> () {
-                        @Override
-                        protected void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast (new ClientHandler ());
-                        }
-                    });
+                    .handler (new ClientInitializer());
             //Подключается к удаленному пиру; ожидает завершения подключения
-            ChannelFuture f = b.connect ().sync ();
+            ChannelFuture f = b.connect (host, port).sync ();
             //Блокирует пока канал не закрыт
             f.channel ().closeFuture ().sync ();
         } finally {

@@ -1,4 +1,4 @@
-package ru.morou.server;
+package ru.morou;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -11,58 +11,39 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.serialization.ClassResolvers;
 import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
+import org.apache.log4j.Logger;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Properties;
+public class BlackBox {
 
-public class NettyServer {
+    private static int PORT = 8080;
+    private static int MAX_OBJ_SIZE = 1024 * 1024 * 100; //100mb
 
-    private String HOST;
-    private int PORT;
-    private Path folder;
-    private static final int MAX_OBJ_SIZE = 1024 * 1024 * 10;
+    private static final Logger logger = Logger.getLogger(BlackBox.class);
 
-
-    // Читаем парамметры, которые необходимы для подключения сервера
-
-    private void readServerProperties() {
-        try (Reader in = new InputStreamReader (this.getClass().getResourceAsStream("/server.properties"))) {
-            Properties properties = new Properties();
-            properties.load(in);
-            HOST = properties.getProperty("host");
-            PORT = Integer.parseInt(properties.getProperty("port"));
-            folder = Paths.get(properties.getProperty("folder"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public BlackBox() {
     }
 
-    public void start() throws Exception {
+    public void run () throws Exception {
         // Creates the EventLoopGroup
         // 1 Первая группа потоков используется для получения клиентского соединения.
-        EventLoopGroup mainGroup = new NioEventLoopGroup ();
+        EventLoopGroup mainGroup = new NioEventLoopGroup();
         // 2 Вторая группа потоков используется для фактических операций c данными.
         EventLoopGroup wokerGroup = new NioEventLoopGroup();
         try {
-            readServerProperties();
             // Creates the EventLoopGroup
-            // 3.1 Создаем вспомогательный класс Bootstrap, который представляет собой серию настроек для нашего Сервера
+            // 3.2 Создаем вспомогательный класс Bootstrap, который представляет собой серию настроек для нашего Сервера
             ServerBootstrap b = new ServerBootstrap();
             b.group(mainGroup, wokerGroup)
-                    // В качестве транспортного канала используется NioServerSocketChannel
+                    // В качестве канала используется NioServerSocketChannel
                     .channel(NioServerSocketChannel.class)
                     // Для каждого клиента создается обрабодчик childHandler
-                    .childHandler(new ChannelInitializer<SocketChannel> () {
+                    .childHandler(new ChannelInitializer<SocketChannel>() {
                         protected void initChannel(SocketChannel ch) throws Exception {
                             // Для каждого клиента строим конвеер pipeline() и добавляем обработчик
                             ch.pipeline().addLast(
                                     new ObjectDecoder (MAX_OBJ_SIZE, ClassResolvers.cacheDisabled(null)),
                                     new ObjectEncoder (),
-                                    new ServerHandler()
+									new ServerHandler ()
                             );
                         }
                     })
