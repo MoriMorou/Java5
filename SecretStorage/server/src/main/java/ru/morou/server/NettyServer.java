@@ -11,6 +11,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.serialization.ClassResolvers;
 import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,10 +20,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
 
+
 public class NettyServer {
 
-    private String HOST;
-    private int PORT;
+    private static final Logger logger = Logger.getLogger(NettyServer.class);
+
+    private String host;
+    private int port;
     private Path folder;
     private static final int MAX_OBJ_SIZE = 1024 * 1024 * 10;
 
@@ -33,10 +37,11 @@ public class NettyServer {
         try (Reader in = new InputStreamReader (this.getClass().getResourceAsStream("/server.properties"))) {
             Properties properties = new Properties();
             properties.load(in);
-            HOST = properties.getProperty("host");
-            PORT = Integer.parseInt(properties.getProperty("port"));
+            host = properties.getProperty("host");
+            port = Integer.parseInt(properties.getProperty("port"));
             folder = Paths.get(properties.getProperty("folder"));
         } catch (IOException e) {
+            logger.warn ("Connection Error, check the server properties file!");
             e.printStackTrace();
         }
     }
@@ -70,7 +75,7 @@ public class NettyServer {
 //                    .option(ChannelOption.TCP_NODELAY, true)
                     .childOption(ChannelOption.SO_KEEPALIVE, true);
             // Установка связи и начало принятия входящиго соединения.
-            ChannelFuture future = b.bind(PORT).sync();
+            ChannelFuture future = b.bind(port).sync();
             // Дождаться закрытия сокета сервера.
             future.channel().closeFuture().sync();
         } finally {
