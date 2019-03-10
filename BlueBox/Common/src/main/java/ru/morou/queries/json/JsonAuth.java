@@ -14,7 +14,7 @@ public class JsonAuth extends StandardJsonQuery {
 	
 	// стандартные имена значений json 
 	public static final String PARAM_NAME_LOGIN = "login";
-	public static final String  PARAM_NAME_PASS = "password";
+	public static final String PARAM_NAME_PASS = "password";
 	
 	/**
 	 * Конструктор
@@ -31,7 +31,7 @@ public class JsonAuth extends StandardJsonQuery {
 				}
 			  });
 	}
-	
+
 	/**
 	 * Получить логин
 	 * @return login

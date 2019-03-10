@@ -4,11 +4,12 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 
+import ru.morou.queries.StandardJsonQuery.QueryType;
+import ru.morou.queries.json.*;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
-import ru.morou.queries.json.*;
 
 /**
  * Десериализатор json - нужен для десериализации обобщенного
@@ -26,7 +27,7 @@ public class StandardQueryCustomDeserializer extends JsonDeserializer<StandardJs
 		
 		switch (root.queryType) {
 			case AUTH_DATA:
-				jsonQuery = new JsonAuth(StandardJsonQuery.QueryType.AUTH_DATA,
+				jsonQuery = new JsonAuth(QueryType.AUTH_DATA,
 						                 root.standardParams.get(JsonAuth.PARAM_NAME_LOGIN), 
 						                 root.standardParams.get(JsonAuth.PARAM_NAME_PASS));
 				break;
@@ -48,7 +49,7 @@ public class StandardQueryCustomDeserializer extends JsonDeserializer<StandardJs
 				jsonQuery = new JsonConfirm(root.paramsWithSet.get(JsonConfirm.PARAM_NAME_DIR_FILES));
 				break;
 			case REG_DATA:
-				jsonQuery = new JsonAuth(StandardJsonQuery.QueryType.REG_DATA,
+				jsonQuery = new JsonAuth(QueryType.REG_DATA,
 						                 root.standardParams.get(JsonAuth.PARAM_NAME_LOGIN), 
 		                                 root.standardParams.get(JsonAuth.PARAM_NAME_PASS));
 				break;

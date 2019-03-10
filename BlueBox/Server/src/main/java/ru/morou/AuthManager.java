@@ -1,4 +1,5 @@
-package ru.morou.handlers;
+package ru.morou;
+
 
 
 import java.io.IOException;
@@ -8,13 +9,11 @@ import java.sql.SQLException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-import io.netty.channel.ChannelInboundHandlerAdapter;
 import org.apache.log4j.Logger;
 
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFutureListener;
-import ru.morou.DatabaseQueriesProcessor;
 import ru.morou.exep.IllegalDataException;
 import ru.morou.exep.UserSQLException;
 import ru.morou.processors.FileTransferHelper;
@@ -28,13 +27,13 @@ import ru.morou.queries.json.JsonSimpleMessage;
  * Осуществляет регистрацию и аутентификацию пользователей
  * @author morou
  */
-public class AuthHandler extends ChannelInboundHandlerAdapter {
-
-	private static final Logger logger = Logger.getLogger(AuthHandler.class);
-
+public class AuthManager {
+	
+	private static final Logger logger = Logger.getLogger(AuthManager.class);
+	
 	// список пользователей в сети
 	private static final ConcurrentMap<Channel, User> currentUsers = new ConcurrentHashMap<>();
-
+	
 	/**
 	 * Ответить на запрос аутентификации
 	 * @param auth данные аутентификации
@@ -43,23 +42,23 @@ public class AuthHandler extends ChannelInboundHandlerAdapter {
 	public void acceptAuth(JsonAuth auth, FilesProcessor processor, Channel channel) {
 		String login = auth.getLogin();
 		String pass = auth.getPassword();
-
+		
 		JsonResultAuth jsonResponse = null;
 		User user = null;
-
+		
 		try {
 			//если пришел запрос аутентификации
 			if (auth.getQueryType() == StandardJsonQuery.QueryType.AUTH_DATA) {
-
+				
 				// если такой пользователь уже в сети
 				if (currentUsers.containsValue(new User(login, null))) {
-					throw new UserSQLException("This user is already online");
+					throw new UserSQLException ("This user is already online");
 				}
-
+				
 				Path authResultPrivateBox = this.getUserFiles(login, pass);
 				jsonResponse = new JsonResultAuth(processor.gatherFilesFromDir(authResultPrivateBox.toString()));
 				user = new User(login, authResultPrivateBox);
-			}
+			}	
 
 			// если запрос на регистрацию нового пользователя
 			else if (auth.getQueryType() == StandardJsonQuery.QueryType.REG_DATA) {
@@ -74,10 +73,10 @@ public class AuthHandler extends ChannelInboundHandlerAdapter {
 		} catch (Exception e) {
 			logger.error("Gathering files in local user "+login+" directory failed: " + e.getMessage(), e);
 		} finally {
-			if (jsonResponse == null)
+			if (jsonResponse == null) 
 				jsonResponse = new JsonResultAuth("Server error");
 		}
-
+		
 		try {
 			if (jsonResponse.getAuthResult()) {
 				currentUsers.put(channel, user);
@@ -88,19 +87,19 @@ public class AuthHandler extends ChannelInboundHandlerAdapter {
 			logger.error("Transferece preparing failed: " + e.getMessage(), e);
 		}
 	}
-
+	
 	/**
 	 * Проверка данных аутентификации и получение пути к ящику пользователя
 	 * @param login логин
 	 * @param pass пароль
 	 * @return путь к личному ящику пользователя
-	 * @throws UserSQLException
+	 * @throws UserSQLException 
 	 */
 	private Path getUserFiles(String login, String pass) throws UserSQLException {
 		try {
 			return Paths.get(DatabaseQueriesProcessor.getInstance().checkUserAuth(login, pass));
 		} catch (SQLException e) {
-			logger.debug("Authentification (" + login + ") is failed (DB problem): " + e.getMessage(), e);
+			logger.debug("Authentification ("+login+") is failed (DB problem): " + e.getMessage(), e);
 			if (e instanceof UserSQLException)
 				throw (UserSQLException)e;
 		}
@@ -123,50 +122,50 @@ public class AuthHandler extends ChannelInboundHandlerAdapter {
 				}
 			}
 		} catch (SQLException e) {
-			logger.error("Registation (" +login+") is failed (DB problem): " + e.getMessage(), e);
+			logger.error("Registation ("+login+") is failed (DB problem): " + e.getMessage(), e);
 		} catch (IOException e) {
 			logger.error("Registation ("+login+") is failed (problem with creating private dir): " + e.getMessage(), e);
 		}
 		return null;
 	}
-
-
-
+	
+	
+	
 	public static String getUserName(Channel channel) {
 		if (currentUsers.get(channel) != null)
 			return currentUsers.get(channel).userName;
-		else
+		else 
 			return null;
 	}
-
+	
 	public static Path getUserFolder(Channel channel) {
 		if (currentUsers.get(channel) != null)
 			return currentUsers.get(channel).userFolder;
-		else
+		else 
 			return null;
 	}
-
+	
 	public void removeFromMap(Channel channel) {
 		currentUsers.remove(channel);
 	}
-
+	
 	/**
 	 * оповещение пользователей о прекращении работы сервера
 	 */
 	static void disconnectFromServer() throws Exception {
 		for (Channel user : currentUsers.keySet()) {
-			StandardJsonQuery json = new JsonSimpleMessage("Connection with server lost", true);
+			StandardJsonQuery json = new JsonSimpleMessage ("Connection with server lost", true);
 			user.writeAndFlush(FileTransferHelper.prepareTransference(json));
 		}
-
+		
 		currentUsers.clear();
 	}
-
-
+	
+	
 	private class User {
 		String userName;
 		Path userFolder;
-
+		
 		private User (String userName, Path userFolder) {
 			this.userName = userName;
 			this.userFolder = userFolder;

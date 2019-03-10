@@ -9,7 +9,6 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import ru.morou.JavaFX.Controller;
-import ru.morou.MessageDecodeHelper;
 import ru.morou.processors.FileTransferHelper;
 import ru.morou.queries.StandardJsonQuery;
 import ru.morou.queries.json.JsonSendFile;

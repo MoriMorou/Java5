@@ -2,7 +2,6 @@ package ru.morou.queries.json;
 
 import java.util.LinkedHashMap;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import ru.morou.queries.StandardJsonQuery;
 

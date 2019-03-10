@@ -10,14 +10,25 @@ import java.util.concurrent.Executors;
 
 import org.apache.log4j.Logger;
 
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.SimpleChannelInboundHandler;
+import ru.morou.AuthManager;
 import ru.morou.exep.IllegalDataException;
 import ru.morou.processors.FileTransferHelper;
 import ru.morou.processors.FilesProcessor;
 import ru.morou.processors.StandardTransference;
 import ru.morou.queries.StandardJsonQuery;
-import ru.morou.queries.json.*;
+import ru.morou.queries.json.JsonAuth;
+import ru.morou.queries.json.JsonConfirm;
+import ru.morou.queries.json.JsonCreateDir;
+import ru.morou.queries.json.JsonDelete;
+import ru.morou.queries.json.JsonGetFile;
+import ru.morou.queries.json.JsonGetFilesList;
+import ru.morou.queries.json.JsonRename;
+import ru.morou.queries.json.JsonSendFile;
+import ru.morou.queries.json.JsonSimpleMessage;
+
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.SimpleChannelInboundHandler;
+
 
 /**
  * Хендлер сервера: обрабатывает входящие сообщения в соответствии с их спецификой
@@ -25,7 +36,7 @@ import ru.morou.queries.json.*;
  */
 public class TransferMessageHandler extends SimpleChannelInboundHandler<StandardJsonQuery> {
 	
-	private AuthHandler authManager = new AuthHandler ();
+	private AuthManager authManager = new AuthManager();
 	private FilesProcessor filesProcessor = new FilesProcessor();
 	
 	private static final Logger logger = Logger.getLogger(TransferMessageHandler.class);
@@ -41,41 +52,41 @@ public class TransferMessageHandler extends SimpleChannelInboundHandler<Standard
 		
 		try {
 			switch (queryType) {
-				case REG_DATA:
-					case AUTH_DATA:              // послать ответ на запрос аутентификации
-						 authManager.acceptAuth((JsonAuth)msg, filesProcessor, ctx.channel());
-					break;
-				case SEND_FILE:              // послать подтверждение получения файла
-					JsonSendFile json = (JsonSendFile) msg;
-					if (json.getPartsAmount() == 0)            // передача файла прошла успешно
-						jsonAnswer = new JsonConfirm(filesProcessor
+			case REG_DATA:
+			case AUTH_DATA:              // послать ответ на запрос аутентификации
+				authManager.acceptAuth((JsonAuth)msg, filesProcessor, ctx.channel());
+				break;
+			case SEND_FILE:              // послать подтверждение получения файла
+				JsonSendFile json = (JsonSendFile) msg;
+				if (json.getPartsAmount() == 0)            // передача файла прошла успешно
+					jsonAnswer = new JsonConfirm(filesProcessor
 							.gatherFilesFromDir(Paths.get(json.getFilePath()).getParent().toString()));
-					else
-						jsonAnswer = new JsonConfirm();
-					break;
-				case CONFIRMATION: // TODO
+				else
+					jsonAnswer = new JsonConfirm();
+				break;
+			case CONFIRMATION: // TODO
 				//				ctx.writeAndFlush(FileTransferHelper.prepareTransference(msg));
 				break;
 				
-				case DELETE:     // удаление файла или папки
-					JsonDelete jsonDel =  (JsonDelete) msg;
-					try {
-						Path path = Paths.get(jsonDel.getFilePath());
-						String log = filesProcessor.deleteFile(path.toString());
-						logger.debug(log);
-						jsonAnswer = new JsonConfirm(filesProcessor.gatherFilesFromDir(path.getParent().toString()));
+			case DELETE:     // удаление файла или папки
+				JsonDelete jsonDel =  (JsonDelete) msg;
+				try {
+					Path path = Paths.get(jsonDel.getFilePath());
+					String log = filesProcessor.deleteFile(path.toString());
+					logger.debug(log);
+					jsonAnswer = new JsonConfirm(filesProcessor.gatherFilesFromDir(path.getParent().toString()));
 					
-					} catch (Exception e) {
-						logger.error("Removing "+jsonDel.getFilePath()+" failed: "+e.getMessage(), e);
-						jsonAnswer = new JsonSimpleMessage("Removing "+jsonDel.getFilePath()+" failed.");
-					}
-					break;
+				} catch (Exception e) {
+					logger.error("Removing "+jsonDel.getFilePath()+" failed: "+e.getMessage(), e);
+					jsonAnswer = new JsonSimpleMessage("Removing "+jsonDel.getFilePath()+" failed.");
+				}
+				break;
 				
-				case GET_LIST:
-					JsonGetFilesList jsonList =  (JsonGetFilesList) msg;
-					// путь к директории в личном хранилище пользователя
-					String dir = jsonList.getFilePath();
-					try {
+			case GET_LIST:
+				JsonGetFilesList jsonList =  (JsonGetFilesList) msg;
+				// путь к директории в личном хранилище пользователя
+				String dir = jsonList.getFilePath();
+				try {
 					// получаем список файлов в заданной папке
 					jsonAnswer = new JsonConfirm(filesProcessor.gatherFilesFromDir(dir));
 				} catch (Exception e) {
@@ -84,41 +95,40 @@ public class TransferMessageHandler extends SimpleChannelInboundHandler<Standard
 				} 
 				break;
 				
-				case RENAME:
-					JsonRename jsonRename = (JsonRename) msg;
-					try {
-						Path path = Paths.get(jsonRename.getFilePath());
-						String newPath = path.getParent() +
+			case RENAME:
+				JsonRename jsonRename = (JsonRename) msg;
+				try {
+					Path path = Paths.get(jsonRename.getFilePath());
+					String newPath = path.getParent() +
 							         File.separator +
 							         jsonRename.getNewFileName();
-						String log = filesProcessor.moveFile(jsonRename.getFilePath(), newPath);
-						logger.debug(log);
-						jsonAnswer = new JsonConfirm(filesProcessor.gatherFilesFromDir(path.getParent().toString()));
-					} catch (Exception e) {
-						logger.error("Renaming "+jsonRename.getFilePath()+" failed: "+e.getMessage(), e);
-						jsonAnswer = new JsonSimpleMessage("Renaming "+jsonRename.getFilePath()+" failed.");
-					}
+					String log = filesProcessor.moveFile(jsonRename.getFilePath(), newPath);
+					logger.debug(log);
+					jsonAnswer = new JsonConfirm(filesProcessor.gatherFilesFromDir(path.getParent().toString()));
+				} catch (Exception e) {
+					logger.error("Renaming "+jsonRename.getFilePath()+" failed: "+e.getMessage(), e);
+					jsonAnswer = new JsonSimpleMessage("Renaming "+jsonRename.getFilePath()+" failed.");
+				} 
 				break;
-
-				case GET_FILE:
-					JsonGetFile jsonGetFile = (JsonGetFile)msg;
-					sendTransference(jsonGetFile.getFilePath(), jsonGetFile.getFilePathOld(), ctx);
+			case GET_FILE:
+				JsonGetFile jsonGetFile = (JsonGetFile)msg;
+				sendTransference(jsonGetFile.getFilePath(), jsonGetFile.getFilePathOld(), ctx);
 				break;
 				
-				case CREATE_DIR:
-					JsonCreateDir jsonCreate = (JsonCreateDir)msg;
-					try {
-						String log = filesProcessor.createFolder(jsonCreate.getFilePath(), jsonCreate.getNewFolderName());
-						logger.debug(log);
-						jsonAnswer = new JsonConfirm(filesProcessor.gatherFilesFromDir(jsonCreate.getFilePath()));
-					} catch (Exception e) {
-						logger.error("Creating "+jsonCreate.getNewFolderName()+" failed: "+e.getMessage(), e);
-						jsonAnswer = new JsonSimpleMessage("Creating "+jsonCreate.getNewFolderName()+" failed.");
-					}
+			case CREATE_DIR:
+				JsonCreateDir jsonCreate = (JsonCreateDir)msg;
+				try {
+					String log = filesProcessor.createFolder(jsonCreate.getFilePath(), jsonCreate.getNewFolderName());
+					logger.debug(log);
+					jsonAnswer = new JsonConfirm(filesProcessor.gatherFilesFromDir(jsonCreate.getFilePath()));
+				} catch (Exception e) {
+					logger.error("Creating "+jsonCreate.getNewFolderName()+" failed: "+e.getMessage(), e);
+					jsonAnswer = new JsonSimpleMessage("Creating "+jsonCreate.getNewFolderName()+" failed.");
+				}
 				break;
 
-				default:      // все ошибочные сообщения, которые не должны поступать на сервер
-					throw new IllegalDataException(queryType);
+			default:      // все ошибочные сообщения, которые не должны поступать на сервер
+				throw new IllegalDataException (queryType);
 
 			}
 		} finally {
@@ -159,7 +169,7 @@ public class TransferMessageHandler extends SimpleChannelInboundHandler<Standard
 			file = Paths.get(pathToFile).toFile();
 			fileSize = (long) Files.getAttribute(file.toPath(), "basic:size");
 		} catch (Exception e) {
-			logger.error("FileBox for transfer ("+pathToFile+") doesn't exists: "+e.getMessage(),e);
+			logger.error("File for transfer ("+pathToFile+") doesn't exists: "+e.getMessage(),e);
 			
 			try {
 				ctx.writeAndFlush(FileTransferHelper
@@ -191,7 +201,7 @@ public class TransferMessageHandler extends SimpleChannelInboundHandler<Standard
 					ctx.writeAndFlush(transference);
 				} 
 			} catch (Exception e) {
-				logger.error("FileBox ("+pathToFile+") transference failed: " + e.getMessage(), e);
+				logger.error("File ("+pathToFile+") transference failed: " + e.getMessage(), e);
 				
 				try {
 					ctx.writeAndFlush(FileTransferHelper

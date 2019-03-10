@@ -9,7 +9,7 @@ import ru.morou.queries.StandardJsonQuery;
 
 /**
  * Ответ с подтверждением
- * @author prozorova 10.10.2018
+ * @author morou
  */
 public class JsonConfirm extends StandardJsonQuery {
 	

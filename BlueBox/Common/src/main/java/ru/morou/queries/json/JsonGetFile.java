@@ -2,6 +2,7 @@ package ru.morou.queries.json;
 
 import java.util.LinkedHashMap;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import ru.morou.queries.PathContainer;
 import ru.morou.queries.StandardJsonQuery;
@@ -22,7 +23,7 @@ public class JsonGetFile extends StandardJsonQuery implements PathContainer {
 	 */
 	@SuppressWarnings("serial")
 	public JsonGetFile(String filePath) {
-		super(StandardJsonQuery.QueryType.GET_FILE,
+		super(QueryType.GET_FILE,
 				new LinkedHashMap<String, String>(){
 			{
 				put(PARAM_NAME_FILEPATH, filePath);

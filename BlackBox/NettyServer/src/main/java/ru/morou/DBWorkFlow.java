@@ -11,6 +11,9 @@ import java.util.List;
 
 public class DBWorkFlow {
 
+
+    List<User> userList = null;
+
     public void connect() {
 
         SessionFactory factory = new Configuration ()
@@ -84,9 +87,24 @@ public class DBWorkFlow {
 //            Author author = session.get(Author.class, 2);
 //            session.delete(author);
 //            session.getTransaction().commit();
+
+            session = factory.getCurrentSession();
+            session.beginTransaction();
+            userList = session.createQuery ("from User").list ();
+//            System.out.println(userList);
+            session.getTransaction().commit();
+
+
+
         } finally {
             factory.close();
             session.close();
+        }
+
+        if(userList != null && !userList.isEmpty ()) {
+            for (User user : userList) {
+                System.out.println (user.getLogin ());
+            }
         }
     }
 }

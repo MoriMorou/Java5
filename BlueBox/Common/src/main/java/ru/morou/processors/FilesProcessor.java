@@ -15,6 +15,7 @@ import org.apache.commons.io.FileUtils;
 import ru.morou.exep.IncorrectPathException;
 import ru.morou.queries.StandardJsonQuery;
 
+
 /**
  * Осуществляет работу с файлами
  * @author morou
@@ -34,7 +35,7 @@ public class FilesProcessor {
 		Path path = Paths.get(pathDir);
 			
 		if (!path.toFile().isDirectory())
-			throw new IncorrectPathException("Files gathering from "+path+" failed");
+			throw new IncorrectPathException ("Files gathering from "+path+" failed");
 		
 		Set<String> set = new HashSet<>();
 		List<IOException> exceptions = new ArrayList<>();
@@ -87,7 +88,7 @@ public class FilesProcessor {
 			log = "   Directory "+filePath+" and its contents deleted";
 		} else {
 			Files.delete(path);
-			log = "   FileBox "+filePath+" deleted";
+			log = "   File "+filePath+" deleted";
 		}
 		return log;
 	}

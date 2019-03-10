@@ -18,7 +18,7 @@ public class JsonGetFilesList extends StandardJsonQuery implements PathContainer
 	 */
 	@SuppressWarnings("serial")
 	public JsonGetFilesList(String filePath) {
-		super(QueryType.GET_LIST,
+		super(StandardJsonQuery.QueryType.GET_LIST,
 			  new LinkedHashMap<String, String>(){
 				{
 					put(PARAM_NAME_DIRPATH, filePath);

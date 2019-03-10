@@ -14,7 +14,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import ru.morou.JavaFX.MessagesProcessor;
 import ru.morou.queries.StandardJsonQuery;
 import ru.morou.queries.json.JsonAuth;
@@ -69,8 +68,8 @@ public class AuthController extends Controller implements Initializable {
 
             clearTextFields();
         } else {
-            textFieldPass.setStyle("-fx-text-inner-color: red;");
-            textFieldPassConfirm.setStyle("-fx-text-inner-color: red;");
+            textFieldPass.setStyle("-fx-text-inner-color: blue;");
+            textFieldPassConfirm.setStyle("-fx-text-inner-color: blue;");
         }
     }
 

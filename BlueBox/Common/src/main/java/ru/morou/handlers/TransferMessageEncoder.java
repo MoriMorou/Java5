@@ -10,7 +10,6 @@ import io.netty.handler.codec.MessageToByteEncoder;
 import ru.morou.processors.FileTransferHelper;
 import ru.morou.processors.StandardTransference;
 
-
 /**
  * Протокол для передачи сообщения по сети: кодирует объект
  * TransferMessage в массив байтов

@@ -54,11 +54,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `storage`.`files`
+-- Table `storage`.`fileBoxes`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `storage`.`files` ;
+DROP TABLE IF EXISTS `storage`.`fileBoxes` ;
 
-CREATE TABLE IF NOT EXISTS `storage`.`files` (
+CREATE TABLE IF NOT EXISTS `storage`.`fileBoxes` (
   `id_file` INT NOT NULL,
   `name_file` VARCHAR(45) NULL,
   `author` VARCHAR(45) NULL,
