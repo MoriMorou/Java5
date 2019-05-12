@@ -11,7 +11,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.serialization.ClassResolvers;
 import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -23,7 +23,7 @@ import java.util.Properties;
 
 public class NettyServer {
 
-    private static final Logger logger = Logger.getLogger(NettyServer.class);
+//    private static final Logger logger = Logger.getLogger(NettyServer.class);
 
     private String host;
     private int port;
@@ -41,10 +41,10 @@ public class NettyServer {
             port = Integer.parseInt(properties.getProperty("port"));
             folder = Paths.get(properties.getProperty("folder"));
         } catch (IOException e) {
-            logger.warn ("Connection Error, check the server properties file!");
+//            logger.warn ("Connection Error, check the server properties file!");
             e.printStackTrace();
         }
-    }
+   }
 
     public void start() throws Exception {
         // Creates the EventLoopGroup
@@ -67,7 +67,7 @@ public class NettyServer {
                             ch.pipeline().addLast(
                                     new ObjectDecoder (MAX_OBJ_SIZE, ClassResolvers.cacheDisabled(null)),
                                     new ObjectEncoder (),
-                                    new ServerHandler()
+                                    new AuthGatewayHandler()
                             );
                         }
                     })

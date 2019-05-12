@@ -1,26 +1,26 @@
 package ru.morou.api.Info;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "files")
+//import javax.persistence.*;
+//
+//@Entity
+//@Table(name = "files")
 public class File {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_file")
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "id_file")
     private String id;
 
-    @Column(name = "name_file")
+//    @Column(name = "name_file")
     private String filename;
 
-    @Column(name = "author")
+//    @Column(name = "author")
     private String author;
 
-    @Column(name = "data")
+//    @Column(name = "data")
     private int data;
 
-    @Column(name = "size")
+//    @Column(name = "size")
     private int size;
 
 
