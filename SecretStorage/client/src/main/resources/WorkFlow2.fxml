@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.morou.client.controllers.WorkFlowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.morou.client.controllers.WorkController">
     <children>
       <Pane prefHeight="600.0" prefWidth="72.0" style="-fx-background-color: #2A363F;">
          <children>
@@ -82,11 +82,11 @@
                               <Insets left="5.0" top="5.0" />
                            </VBox.margin>
                         </Label>
-                        <TableView prefHeight="516.0" prefWidth="498.0">
+                        <TableView fx:id="cloudFilesTable" prefHeight="516.0" prefWidth="498.0">
                            <columns>
-                              <TableColumn fx:id="fileName" prefWidth="211.0" text="Name" />
-                              <TableColumn fx:id="fileType" prefWidth="110.0" text="Type" />
-                              <TableColumn fx:id="fileSize" prefWidth="79.0" text="Size" />
+                              <TableColumn fx:id="fileNameCloud" prefWidth="211.0" text="Name" />
+                              <TableColumn fx:id="fileTypeCloud" prefWidth="110.0" text="Type" />
+                              <TableColumn fx:id="fileSizeCloud" prefWidth="79.0" text="Size" />
                            </columns>
                            <contextMenu>
                               <ContextMenu>
@@ -120,11 +120,11 @@
                               <Insets left="5.0" top="5.0" />
                            </VBox.margin>
                         </Label>
-                        <TableView prefHeight="516.0" prefWidth="498.0">
+                        <TableView fx:id="localFilesTable" prefHeight="516.0" prefWidth="498.0">
                           <columns>
-                            <TableColumn fx:id="fileName" prefWidth="211.0" text="Name" />
-                            <TableColumn fx:id="fileType" prefWidth="110.0" text="Type" />
-                              <TableColumn fx:id="fileSize" prefWidth="79.0" text="Size" />
+                            <TableColumn fx:id="fileNameLocal" prefWidth="211.0" text="Name" />
+                            <TableColumn fx:id="fileTypeLocal" prefWidth="110.0" text="Type" />
+                            <TableColumn fx:id="fileSizeLocal" prefWidth="79.0" text="Size" />
                           </columns>
                            <contextMenu>
                               <ContextMenu>

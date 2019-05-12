@@ -1,6 +1,9 @@
 package ru.morou.api;
 
-//Этим классом передавать сообщения для авторизации
+/**
+ * Этим классом передаем сообщения для авторизации
+ */
+
 public class AuthMessage extends AbstractMessage {
 
     private String login;

@@ -2,6 +2,7 @@ package ru.morou.client;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import ru.morou.client.controllers.LoginController;
 
 /**
  * Основной класс.
@@ -14,6 +15,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         ScreenManager.setStage(primaryStage);
         ScreenManager.showLoginScreen();
+
     }
 
     public static void main(String[] args) {

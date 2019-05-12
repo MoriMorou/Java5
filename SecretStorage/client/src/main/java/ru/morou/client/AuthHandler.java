@@ -16,7 +16,7 @@ import io.netty.util.CharsetUtil;
 
 
 @ChannelHandler.Sharable
-public class ClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
+public class AuthHandler extends SimpleChannelInboundHandler<ByteBuf> {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
