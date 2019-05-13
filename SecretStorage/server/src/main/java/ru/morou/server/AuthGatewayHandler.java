@@ -1,7 +1,5 @@
 package ru.morou.server;
 
-import io.netty.buffer.Unpooled;
-import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.ReferenceCountUtil;
@@ -13,8 +11,6 @@ import ru.morou.api.CommandMessage;
  * ChannelInboundHandlerAdapter - что ChannelHandler может безопасно использоваться несколькими каналами
  */
 
-
-//@ChannelHandler.Sharable
 public class AuthGatewayHandler extends ChannelInboundHandlerAdapter {
 
 //    private static final Logger logger = Logger.getLogger(AuthGatewayHandler.class);

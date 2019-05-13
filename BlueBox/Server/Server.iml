@@ -3,13 +3,7 @@
   <component name="FacetManager">
     <facet type="hibernate" name="Hibernate">
       <configuration>
-<<<<<<< HEAD:SecretStorage/server/server.iml
         <datasource-map />
-=======
-        <datasource-map>
-          <unit-entry name="hibernate.cfg.xml" />
-        </datasource-map>
->>>>>>> d2c18af9e8d19e5999df2cd2dcb504370438eff3:BlueBox/Server/Server.iml
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernate.cfg.xml" />
       </configuration>

@@ -20,7 +20,7 @@ public class Reader {
             joinColumns = @JoinColumn(name = "reader_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id")
     )
-    private List<Book> books;
+    private List<Book> bookList;
 
     public int getId() {
         return id;
@@ -38,23 +38,23 @@ public class Reader {
         this.name = name;
     }
 
-    public List<Book> getBooks() {
-        return books;
+    public List<Book> getBookList() {
+        return bookList;
     }
 
-    public void setBooks(List<Book> books) {
-        this.books = books;
+    public void setBookList(List<Book> bookList) {
+        this.bookList = bookList;
     }
 
     public Reader() {
     }
 
     @Override
-    public String toString() {
+    public String toString(){
         String allBooks = "";
-        for (Book o : books) {
+        for (Book o: bookList) {
             allBooks += o.getTitle() + " ";
         }
-        return "Reader [" + id + " " + name + " " + allBooks + "]";
+        return "Reader [" + id + " " + name + " " + "[ " + allBooks +  "] ]";
     }
 }

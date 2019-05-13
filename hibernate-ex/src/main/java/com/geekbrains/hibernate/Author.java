@@ -1,6 +1,7 @@
 package com.geekbrains.hibernate;
 
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,7 +17,7 @@ public class Author {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author_id")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private List<Book> books;
 
@@ -36,23 +37,15 @@ public class Author {
         this.name = name;
     }
 
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
-
     public Author() {
     }
 
     @Override
-    public String toString() {
+    public String toString(){
         String allBooks = "";
-        for (Book o : books) {
+        for (Book o: books) {
             allBooks += o.getTitle() + " ";
         }
-        return "Author [" + id + " " + name + " " + allBooks + "]";
+        return "Author [" + id + " " + name + " " + "[ " + allBooks +  "] ]";
     }
 }

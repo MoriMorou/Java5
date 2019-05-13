@@ -1,7 +1,5 @@
 package com.geekbrains.hibernate;
 
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,12 +11,17 @@ public class Book {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "title")
-    private String title;
-
     @ManyToOne
     @JoinColumn(name = "author_id")
-    private Author author;
+    private Author author_id;
+
+    public Author getAuthor_id() {
+        return author_id;
+    }
+
+    public void setAuthor_id(Author author_id) {
+        this.author_id = author_id;
+    }
 
     @ManyToMany
     @JoinTable(
@@ -27,6 +30,9 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name = "reader_id")
     )
     private List<Reader> readers;
+
+    @Column(name = "title")
+    private String title;
 
     public int getId() {
         return id;
@@ -44,27 +50,8 @@ public class Book {
         this.title = title;
     }
 
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
-    }
-
-    public List<Reader> getReaders() {
-        return readers;
-    }
-
-    public void setReaders(List<Reader> readers) {
-        this.readers = readers;
-    }
-
-    public Book() {
-    }
-
     @Override
-    public String toString() {
-        return "Book [" + id + " " + title + " " + author.getName() + "]";
+    public String toString(){
+        return "Book [" + id + " " + title + " " + author_id.getName() + "]";
     }
 }

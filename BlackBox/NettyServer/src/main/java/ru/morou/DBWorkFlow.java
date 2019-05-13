@@ -44,12 +44,12 @@ public class DBWorkFlow {
 
 
 //            CHANGE_PASS DONE
-            session = factory.getCurrentSession();
-            session.beginTransaction();
-            User user = session.get(User.class, 2);
-            user.setPassword ("4321");
-            session.getTransaction().commit();
-            System.out.println(user);
+//            session = factory.getCurrentSession();
+//            session.beginTransaction();
+//            User user = session.get(User.class, 2);
+//            user.setPassword ("4321");
+//            session.getTransaction().commit();
+//            System.out.println(user);
 
 //            DeleteUser (не работает)
 //            session = factory.getCurrentSession();
